@@ -1,2 +1,2 @@
-# Wedding
-RSVP and Information for the Bonn-Miller Wedding Celebration
+# Nicholas and Samantha Bonn-Miller's Wedding Reception
+RSVP and Information
