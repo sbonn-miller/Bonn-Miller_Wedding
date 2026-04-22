@@ -13,40 +13,37 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
-    color: #333333; /* Darker text for better readability */
-    background: #f8f6f3; /* Simpler background */
-    min-height: 100vh;
+    color: #333;
+    background: white;
+    padding: 20px;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
 }
 
 /* Header */
 .header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px;
     background: white;
     margin-bottom: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #8b7355;
+    border-radius: 10px;
 }
 
 .header h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3em;
-    color: #d4a574;
+    font-size: 2.5em;
+    color: #8b7355;
     margin-bottom: 10px;
 }
 
 .header p {
     font-size: 1.2em;
-    color: #666;
-    font-weight: 500;
+    color: #8b7355;
 }
 
 /* Back Button */
@@ -54,68 +51,68 @@ body {
     display: inline-block;
     margin-bottom: 20px;
     padding: 12px 25px;
-    background: #a8c09a;
+    background: #8b7355;
     color: white;
     text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .back-btn:hover {
-    background: #95b085;
+    background: #6d5a42;
 }
 
-/* Food Coordination Notice */
+/* Food Notice */
 .food-coordination-notice {
-    background: #fff8f0;
-    border: 2px solid #d4a574;
-    border-radius: 15px;
-    padding: 25px;
+    background: #f5f3f0;
+    border: 2px solid #8b7355;
+    padding: 20px;
     margin-bottom: 30px;
     text-align: center;
+    border-radius: 10px;
 }
 
 .food-coordination-notice h3 {
     color: #8b7355;
     margin-bottom: 15px;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .food-coordination-notice p {
-    color: #555;
-    font-size: 1.1em;
+    color: #333;
+    font-size: 1em;
 }
 
 .food-coordination-notice a {
-    color: #d4a574;
-    text-decoration: none;
-    font-weight: 600;
+    color: #8b7355;
+    font-weight: bold;
 }
 
-/* Form Styles */
+/* Form Container */
 .form-container {
     background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
+    border: 2px solid #8b7355;
+    padding: 30px;
+    border-radius: 10px;
 }
 
+/* Form Sections */
 .form-section {
     margin-bottom: 30px;
-    padding: 25px;
-    background: #fafafa;
-    border-radius: 10px;
-    border-left: 4px solid #d4a574;
+    padding: 20px;
+    background: #f9f8f6;
+    border-radius: 8px;
+    border-left: 4px solid #8b7355;
 }
 
 .section-title {
-    font-size: 1.5em;
-    color: #333;
+    font-size: 1.4em;
+    color: #8b7355;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
+/* Form Groups */
 .form-group {
     margin-bottom: 20px;
 }
@@ -123,8 +120,8 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
+    font-weight: bold;
+    color: #8b7355;
     font-size: 1em;
 }
 
@@ -133,8 +130,8 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
     font-size: 1em;
     background: white;
     color: #333;
@@ -144,15 +141,14 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #d4a574;
+    border-color: #8b7355;
 }
 
-/* Radio Button Styles */
+/* Radio Buttons */
 .radio-group {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    margin-top: 10px;
 }
 
 .radio-option {
@@ -161,16 +157,16 @@ body {
     gap: 10px;
     padding: 15px;
     background: white;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
     cursor: pointer;
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
 }
 
 .radio-option:hover {
-    border-color: #d4a574;
-    background: #fff8f0;
+    border-color: #8b7355;
+    background: #f5f3f0;
 }
 
 .radio-option input[type="radio"] {
@@ -180,75 +176,86 @@ body {
 
 .radio-option label {
     color: #333;
-    font-weight: 500;
+    font-weight: normal;
     margin: 0;
+    cursor: pointer;
 }
 
 .radio-option:has(input[type="radio"]:checked) {
-    border-color: #d4a574;
-    background: #fff8f0;
+    border-color: #8b7355;
+    background: #f5f3f0;
 }
 
-/* Food Contribution Styles */
+.radio-option input[type="radio"]:checked + label {
+    color: #8b7355;
+    font-weight: bold;
+}
+
+/* Food Contributions */
 .food-contributions {
-    background: #f0f8f0;
+    background: #f5f3f0;
     padding: 20px;
-    border-radius: 10px;
-    border: 2px solid #a8c09a;
+    border-radius: 8px;
+    border: 1px solid #8b7355;
     margin-top: 15px;
 }
 
 .food-item {
     background: white;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
 
+.food-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Buttons */
 .add-food-btn, .remove-food-btn {
     padding: 10px 20px;
     border: none;
-    border-radius: 6px;
-    font-weight: 600;
+    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
     font-size: 0.9em;
 }
 
 .add-food-btn {
-    background: #a8c09a;
+    background: #8b7355;
     color: white;
 }
 
 .add-food-btn:hover {
-    background: #95b085;
+    background: #6d5a42;
 }
 
 .remove-food-btn {
-    background: #ff6b6b;
+    background: #d32f2f;
     color: white;
     margin-top: 10px;
 }
 
 .remove-food-btn:hover {
-    background: #ff5252;
+    background: #b71c1c;
 }
 
 /* Submit Button */
 .submit-btn {
     width: 100%;
     padding: 18px;
-    background: #d4a574;
+    background: #8b7355;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1.2em;
-    font-weight: 700;
+    border-radius: 8px;
+    font-size: 1.3em;
+    font-weight: bold;
     cursor: pointer;
 }
 
 .submit-btn:hover {
-    background: #c49660;
+    background: #6d5a42;
 }
 
 .submit-btn:disabled {
@@ -264,27 +271,27 @@ body {
 /* Messages */
 .message {
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: bold;
     text-align: center;
 }
 
 .success {
     background: #d4edda;
     color: #155724;
-    border: 1px solid #c3e6cb;
+    border: 2px solid #c3e6cb;
 }
 
 .error {
     background: #f8d7da;
     color: #721c24;
-    border: 1px solid #f5c6cb;
+    border: 2px solid #f5c6cb;
 }
 
-/* Responsive Design */
+/* Mobile */
 @media (max-width: 768px) {
-    .container {
+    body {
         padding: 10px;
     }
     
