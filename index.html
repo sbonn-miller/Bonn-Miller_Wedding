@@ -1,0 +1,842 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Wedding RSVP - Sarah & Mike</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+ 
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6; 
+            color: #5a5a5a; 
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%); 
+            min-height: 100vh; 
+        } 
+ 
+        /* Botanical Header Decoration */ 
+        .botanical-header { 
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><defs><style>.leaf{fill:%23a8c09a;opacity:0.7}.flower{fill:%23d4a574;opacity:0.8}.branch{fill:%23a8c09a;opacity:0.6}</style></defs><path class="branch" d="M0,60 Q300,20 600,60 T1200,60 L1200,0 L0,0 Z"/><circle class="flower" cx="150" cy="40" r="3"/><circle class="flower" cx="450" cy="35" r="2.5"/><circle class="flower" cx="750" cy="45" r="3"/><circle class="flower" cx="1050" cy="38" r="2.5"/><ellipse class="leaf" cx="200" cy="50" rx="8" ry="4" transform="rotate(25 200 50)"/><ellipse class="leaf" cx="500" cy="45" rx="6" ry="3" transform="rotate(-15 500 45)"/><ellipse class="leaf" cx="800" cy="55" rx="7" ry="3.5" transform="rotate(35 800 55)"/><ellipse class="leaf" cx="1000" cy="48" rx="6" ry="3" transform="rotate(-25 1000 48)"/></svg>') no-repeat center top; 
+            background-size: cover; 
+            height: 120px; 
+            width: 100%; 
+        } 
+ 
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        } 
+ 
+        /* Header */ 
+        .header { 
+            text-align: center; 
+            padding: 40px 0; 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); 
+            margin: -60px 20px 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .header h1 { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 3.5em; 
+            color: #d4a574; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .header p { 
+            font-size: 1.2em; 
+            color: #8b7355; 
+            font-weight: 500; 
+        } 
+ 
+        /* Back Button */ 
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 30px; 
+            padding: 12px 25px; 
+            background: linear-gradient(135deg, #a8c09a 0%, #95b085 100%); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 25px; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 5px 15px rgba(168, 192, 154, 0.3); 
+        } 
+ 
+        .back-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(168, 192, 154, 0.4); 
+        } 
+ 
+        /* Food Coordination Notice */ 
+        .food-coordination-notice { 
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(168, 192, 154, 0.1) 100%); 
+            border: 2px solid rgba(212, 165, 116, 0.3); 
+            border-radius: 15px; 
+            padding: 25px; 
+            margin-bottom: 30px; 
+            text-align: center; 
+            position: relative; 
+            overflow: hidden; 
+        } 
+ 
+        .food-coordination-notice::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%; 
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.05) 0%, transparent 70%); 
+            animation: float 8s ease-in-out infinite; 
+        } 
+ 
+        .food-coordination-notice h3 { 
+            font-family: 'Playfair Display', serif; 
+            color: #8b7355; 
+            margin-bottom: 15px; 
+            font-size: 1.5em; 
+            position: relative; 
+            z-index: 2; 
+        } 
+ 
+        .food-coordination-notice p { 
+            color: #6b6b6b; 
+            font-size: 1.1em; 
+            line-height: 1.6; 
+            position: relative; 
+            z-index: 2; 
+        } 
+ 
+        .food-coordination-notice a { 
+            color: #d4a574; 
+            text-decoration: none; 
+            font-weight: 600; 
+            border-bottom: 2px solid transparent; 
+            transition: border-color 0.3s ease; 
+        } 
+ 
+        .food-coordination-notice a:hover { 
+            border-bottom-color: #d4a574; 
+        } 
+ 
+        /* Form Styles */ 
+        .form-container { 
+            background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px); 
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); 
+            border: 1px solid rgba(212, 165, 116, 0.2); 
+            margin-bottom: 40px; 
+        } 
+ 
+        .form-section { 
+            margin-bottom: 40px; 
+            padding: 30px; 
+            background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%); 
+            border-radius: 15px; 
+            border-left: 5px solid #d4a574; 
+            transition: all 0.3s ease; 
+        } 
+ 
+        .form-section:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .section-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8em; 
+            color: #8b7355; 
+            margin-bottom: 25px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        } 
+ 
+        .form-group { 
+            margin-bottom: 25px; 
+        } 
+ 
+        .form-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #8b7355; 
+            font-size: 1.1em; 
+        } 
+ 
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #e8e8e8; 
+            border-radius: 10px; 
+            font-size: 1em; 
+            font-family: 'Montserrat', sans-serif; 
+            transition: all 0.3s ease; 
+            background: white; 
+        } 
+ 
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus { 
+            outline: none; 
+            border-color: #d4a574; 
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1); 
+            transform: translateY(-1px); 
+        } 
+ 
+        .phone-input { 
+            font-family: monospace; 
+            letter-spacing: 1px; 
+        } 
+ 
+        /* Radio Button Styles */ 
+        .radio-group { 
+            display: flex; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+            margin-top: 10px; 
+        } 
+ 
+        .radio-option { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            padding: 15px 20px; 
+            background: white; 
+            border: 2px solid #e8e8e8; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            flex: 1; 
+            min-width: 200px; 
+        } 
+ 
+        .radio-option:hover { 
+            border-color: #d4a574; 
+            background: rgba(212, 165, 116, 0.05); 
+        } 
+ 
+        .radio-option input[type="radio"] { 
+            width: auto; 
+            margin: 0; 
+        } 
+ 
+        .radio-option input[type="radio"]:checked + label { 
+            color: #d4a574; 
+            font-weight: 600; 
+        } 
+ 
+        .radio-option:has(input[type="radio"]:checked) { 
+            border-color: #d4a574; 
+            background: rgba(212, 165, 116, 0.1); 
+        } 
+ 
+        /* Food Contribution Styles */ 
+        .food-contributions { 
+            background: linear-gradient(135deg, rgba(168, 192, 154, 0.1) 0%, rgba(212, 165, 116, 0.1) 100%); 
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 2px solid rgba(168, 192, 154, 0.2); 
+            margin-top: 20px; 
+        } 
+ 
+        .food-item { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            border: 1px solid #e8e8e8; 
+            transition: all 0.3s ease; 
+        } 
+ 
+        .food-item:hover { 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .food-item:last-child { 
+            margin-bottom: 0; 
+        } 
+ 
+        .add-food-btn, .remove-food-btn { 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            font-size: 1em; 
+        } 
+ 
+        .add-food-btn { 
+            background: linear-gradient(135deg, #a8c09a 0%, #95b085 100%); 
+            color: white; 
+            box-shadow: 0 5px 15px rgba(168, 192, 154, 0.3); 
+        } 
+ 
+        .add-food-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(168, 192, 154, 0.4); 
+        } 
+ 
+        .remove-food-btn { 
+            background: linear-gradient(135deg, #ff8a80 0%, #ff5722 100%); 
+            color: white; 
+            box-shadow: 0 5px 15px rgba(255, 138, 128, 0.3); 
+            margin-top: 10px; 
+        } 
+ 
+        .remove-food-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(255, 138, 128, 0.4); 
+        } 
+ 
+        /* Submit Button */ 
+        .submit-btn { 
+            width: 100%; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #d4a574 0%, #c49660 100%); 
+            color: white; 
+            border: none; 
+            border-radius: 15px; 
+            font-size: 1.3em; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: all 0.4s ease; 
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3); 
+            position: relative; 
+            overflow: hidden; 
+        } 
+ 
+        .submit-btn::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: -100%; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); 
+            transition: left 0.5s; 
+        } 
+ 
+        .submit-btn:hover::before { 
+            left: 100%; 
+        } 
+ 
+        .submit-btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4); 
+        } 
+ 
+        .submit-btn:disabled { 
+            background: #ccc; 
+            cursor: not-allowed; 
+            transform: none; 
+            box-shadow: none; 
+        } 
+ 
+        /* Hidden sections */ 
+        .hidden { 
+            display: none; 
+        } 
+ 
+        /* Success/Error Messages */ 
+        .message { 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            font-weight: 600; 
+            text-align: center; 
+        } 
+ 
+        .success { 
+            background: linear-gradient(135deg, rgba(168, 192, 154, 0.2) 0%, rgba(168, 192, 154, 0.1) 100%); 
+            color: #4caf50; 
+            border: 2px solid rgba(168, 192, 154, 0.3); 
+        } 
+ 
+        .error { 
+            background: linear-gradient(135deg, rgba(255, 138, 128, 0.2) 0%, rgba(255, 138, 128, 0.1) 100%); 
+            color: #f44336; 
+            border: 2px solid rgba(255, 138, 128, 0.3); 
+        } 
+ 
+        /* Botanical Footer */ 
+        .botanical-footer { 
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><defs><style>.leaf{fill:%23a8c09a;opacity:0.7}.flower{fill:%23d4a574;opacity:0.8}.branch{fill:%23a8c09a;opacity:0.6}</style></defs><path class="branch" d="M0,60 Q300,100 600,60 T1200,60 L1200,120 L0,120 Z"/><circle class="flower" cx="150" cy="80" r="3"/><circle class="flower" cx="450" cy="85" r="2.5"/><circle class="flower" cx="750" cy="75" r="3"/><circle class="flower" cx="1050" cy="82" r="2.5"/><ellipse class="leaf" cx="200" cy="70" rx="8" ry="4" transform="rotate(-25 200 70)"/><ellipse class="leaf" cx="500" cy="75" rx="6" ry="3" transform="rotate(15 500 75)"/><ellipse class="leaf" cx="800" cy="65" rx="7" ry="3.5" transform="rotate(-35 800 65)"/><ellipse class="leaf" cx="1000" cy="72" rx="6" ry="3" transform="rotate(25 1000 72)"/></svg>') no-repeat center bottom; 
+            background-size: cover; 
+            height: 120px; 
+            width: 100%; 
+            margin-top: 40px; 
+        } 
+ 
+        /* Responsive Design */ 
+        @media (max-width: 768px) { 
+            .botanical-header, .botanical-footer { 
+                height: 80px; 
+            } 
+             
+            .header { 
+                margin: -40px 10px 20px; 
+                padding: 30px 20px; 
+            } 
+             
+            .header h1 { 
+                font-size: 2.5em; 
+            } 
+             
+            .form-container { 
+                padding: 30px 20px; 
+                margin-left: 10px; 
+                margin-right: 10px; 
+            } 
+             
+            .form-section { 
+                padding: 20px; 
+            } 
+             
+            .radio-group { 
+                flex-direction: column; 
+            } 
+             
+            .radio-option { 
+                min-width: auto; 
+            } 
+        } 
+ 
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px) rotate(0deg); } 
+            50% { transform: translateY(-10px) rotate(180deg); } 
+        } 
+    </style> 
+</head> 
+<body> 
+    <!-- Botanical Header --> 
+    <div class="botanical-header"></div> 
+ 
+    <div class="container"> 
+        <!-- Header --> 
+        <div class="header"> 
+            <h1>Wedding RSVP</h1> 
+            <p>Sarah & Mike • June 15th, 2024</p> 
+        </div> 
+ 
+        <!-- Back Button --> 
+        <a href="index.html" class="back-btn">← Back to Wedding Info</a> 
+ 
+        <!-- Food Coordination Notice --> 
+        <div class="food-coordination-notice"> 
+            <h3>🍽️ Food Coordination</h3> 
+            <p>Want to see what others are bringing? Check out the <a href="index.html#food-tables">food coordination tables</a> on our main page to avoid duplicates and ensure a delicious variety! 🌟</p> 
+        </div> 
+ 
+        <!-- RSVP Form --> 
+        <div class="form-container"> 
+            <form id="rsvpForm"> 
+                <!-- Basic Information --> 
+                <div class="form-section"> 
+                    <h3 class="section-title">👤 Your Information</h3> 
+                     
+                    <div class="form-group"> 
+                        <label for="name">Full Name *</label> 
+                        <input type="text" id="name" name="name" required> 
+                    </div> 
+                     
+                    <div class="form-group"> 
+                        <label for="phone">Phone Number *</label> 
+                        <input type="tel" id="phone" name="phone" class="phone-input" placeholder="(___) ___-____" required> 
+                    </div> 
+                     
+                    <div class="form-group"> 
+                        <label for="email">Email (Optional)</label> 
+                        <input type="email" id="email" name="email"> 
+                    </div> 
+                </div> 
+ 
+                <!-- Attendance Question --> 
+                <div class="form-section"> 
+                    <h3 class="section-title">💌 Will you be able to attend?</h3> 
+                    <div class="radio-group"> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="attend-yes" name="attendance" value="yes" required> 
+                            <label for="attend-yes">Yes, I'll be there! 🎉</label> 
+                        </div> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="attend-maybe" name="attendance" value="maybe" required> 
+                            <label for="attend-maybe">Maybe 🤔</label> 
+                        </div> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="attend-no" name="attendance" value="no" required> 
+                            <label for="attend-no">Sorry, can't make it 😢</label> 
+                        </div> 
+                    </div> 
+                </div> 
+ 
+                <!-- Thank You Message (for No/Maybe) --> 
+                <div id="thankYouSection" class="form-section hidden"> 
+                    <h3 class="section-title">💕 Thank You</h3> 
+                    <p style="font-size: 1.2em; text-align: center; color: #8b7355;"> 
+                        Thank you for letting us know! We'll miss celebrating with you, but we understand.  
+                        We hope to see you soon! ❤️ 
+                    </p> 
+                </div> 
+ 
+                <!-- Guest Details (for Yes) --> 
+                <div id="guestDetailsSection" class="form-section hidden"> 
+                    <h3 class="section-title">👥 Guest Details</h3> 
+                     
+                    <div class="form-group"> 
+                        <label for="adults">Number of Adults</label> 
+                        <select id="adults" name="adults"> 
+                            <option value="1">1</option> 
+                            <option value="2">2</option> 
+                            <option value="3">3</option> 
+                            <option value="4">4</option> 
+                            <option value="5">5</option> 
+                            <option value="6">6</option> 
+                            <option value="7">7</option> 
+                            <option value="8">8</option> 
+                            <option value="9">9</option> 
+                            <option value="10">10</option> 
+                        </select> 
+                    </div> 
+                     
+                    <div class="form-group"> 
+                        <label for="children">Number of Children</label> 
+                        <select id="children" name="children"> 
+                            <option value="0">0</option> 
+                            <option value="1">1</option> 
+                            <option value="2">2</option> 
+                            <option value="3">3</option> 
+                            <option value="4">4</option> 
+                            <option value="5">5</option> 
+                            <option value="6">6</option> 
+                            <option value="7">7</option> 
+                            <option value="8">8</option> 
+                            <option value="9">9</option> 
+                            <option value="10">10</option> 
+                        </select> 
+                    </div> 
+                     
+                    <div id="otherNamesSection" class="form-group hidden"> 
+                        <label for="otherNames">Names of Other Attendees</label> 
+                        <textarea id="otherNames" name="otherNames" rows="3" placeholder="Please list the names of all other attendees in your party"></textarea> 
+                    </div> 
+                </div> 
+ 
+                <!-- Overnight Stay --> 
+                <div id="overnightSection" class="form-section hidden"> 
+                    <h3 class="section-title">🏕️ Overnight Stay</h3> 
+                    <div class="radio-group"> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="tent-camping" name="overnight" value="tent-camping"> 
+                            <label for="tent-camping">Yes, I'll be tent camping ⛺</label> 
+                        </div> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="trailer-camping" name="overnight" value="trailer-camping"> 
+                            <label for="trailer-camping">Yes, I'll be trailer camping 🚐</label> 
+                        </div> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="breakfast-only" name="overnight" value="breakfast-only"> 
+                            <label for="breakfast-only">No, but I'll be back for breakfast 🌅</label> 
+                        </div> 
+                        <div class="radio-option"> 
+                            <input type="radio" id="no-overnight" name="overnight" value="no"> 
+                            <label for="no-overnight">No overnight stay 🏠</label> 
+                        </div> 
+                    </div> 
+                </div> 
+ 
+                <!-- Reception Food Contribution --> 
+                <div id="receptionFoodSection" class="form-section hidden"> 
+                    <h3 class="section-title">🍽️ Reception Food Contribution</h3> 
+                    <p style="margin-bottom: 20px; color: #6b6b6b;">Would you like to contribute something delicious to our reception feast?</p> 
+                     
+                    <div class="food-contributions" id="receptionFoodContributions"> 
+                        <div class="food-item"> 
+                            <div class="form-group"> 
+                                <label>Food Type</label> 
+                                <select name="receptionFoodType[]"> 
+                                    <option value="">Select type...</option> 
+                                    <option value="Appetizer">Appetizer</option> 
+                                    <option value="Side">Side</option> 
+                                    <option value="Dessert">Dessert</option> 
+                                    <option value="Beverage">Beverage</option> 
+                                </select> 
+                            </div> 
+                            <div class="form-group"> 
+                                <label>Food Description</label> 
+                                <input type="text" name="receptionFoodDescription[]" placeholder="What delicious item will you bring?"> 
+                            </div> 
+                        </div> 
+                    </div> 
+                    <button type="button" class="add-food-btn" onclick="addReceptionFood()">+ Add Another Item</button> 
+                </div> 
+ 
+                <!-- Breakfast Food Contribution --> 
+                <div id="breakfastFoodSection" class="form-section hidden"> 
+                    <h3 class="section-title">🌅 Breakfast Food Contribution</h3> 
+                    <p style="margin-bottom: 20px; color: #6b6b6b;">Help us create a wonderful breakfast spread!</p> 
+                     
+                    <div class="food-contributions" id="breakfastFoodContributions"> 
+                        <div class="food-item"> 
+                            <div class="form-group"> 
+                                <label>Food Type</label> 
+                                <select name="breakfastFoodType[]"> 
+                                    <option value="">Select type...</option> 
+                                    <option value="Main Breakfast Item">Main Breakfast Item</option> 
+                                    <option value="Side">Side</option> 
+                                    <option value="Beverage">Beverage</option> 
+                                    <option value="Sweet Treat">Sweet Treat</option> 
+                                </select> 
+                            </div> 
+                            <div class="form-group"> 
+                                <label>Food Description</label> 
+                                <input type="text" name="breakfastFoodDescription[]" placeholder="What breakfast delight will you bring?"> 
+                            </div> 
+                        </div> 
+                    </div> 
+                    <button type="button" class="add-food-btn" onclick="addBreakfastFood()">+ Add Another Item</button> 
+                </div> 
+ 
+                <!-- Submit Button --> 
+                <button type="submit" class="submit-btn" id="submitBtn"> 
+                    ✨ Submit RSVP ✨ 
+                </button> 
+            </form> 
+        </div> 
+    </div> 
+ 
+    <!-- Botanical Footer --> 
+    <div class="botanical-footer"></div> 
+ 
+    <script> 
+        // Configuration - UPDATE THIS WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL 
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
+ 
+        // Phone number formatting 
+        document.getElementById('phone').addEventListener('input', function(e) { 
+            let value = e.target.value.replace(/\D/g, ''); 
+            if (value.length >= 6) { 
+                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`; 
+            } else if (value.length >= 3) { 
+                value = `(${value.slice(0,3)}) ${value.slice(3)}`; 
+            } 
+            e.target.value = value; 
+        }); 
+ 
+        // Check for phone number in session storage (for updates) 
+        document.addEventListener('DOMContentLoaded', function() { 
+            const updatePhone = sessionStorage.getItem('updatePhone'); 
+            if (updatePhone) { 
+                document.getElementById('phone').value = updatePhone; 
+                sessionStorage.removeItem('updatePhone'); 
+            } 
+        }); 
+ 
+        // Attendance change handler 
+        document.querySelectorAll('input[name="attendance"]').forEach(radio => { 
+            radio.addEventListener('change', function() { 
+                const thankYouSection = document.getElementById('thankYouSection'); 
+                const guestDetailsSection = document.getElementById('guestDetailsSection'); 
+                const overnightSection = document.getElementById('overnightSection'); 
+                const receptionFoodSection = document.getElementById('receptionFoodSection'); 
+                const breakfastFoodSection = document.getElementById('breakfastFoodSection'); 
+ 
+                if (this.value === 'yes') { 
+                    thankYouSection.classList.add('hidden'); 
+                    guestDetailsSection.classList.remove('hidden'); 
+                    overnightSection.classList.remove('hidden'); 
+                    receptionFoodSection.classList.remove('hidden'); 
+                    updateBreakfastVisibility(); 
+                } else { 
+                    thankYouSection.classList.remove('hidden'); 
+                    guestDetailsSection.classList.add('hidden'); 
+                    overnightSection.classList.add('hidden'); 
+                    receptionFoodSection.classList.add('hidden'); 
+                    breakfastFoodSection.classList.add('hidden'); 
+                } 
+            }); 
+        }); 
+ 
+        // Guest count change handler 
+        document.getElementById('adults').addEventListener('change', updateOtherNamesVisibility); 
+        document.getElementById('children').addEventListener('change', updateOtherNamesVisibility); 
+ 
+        function updateOtherNamesVisibility() { 
+            const adults = parseInt(document.getElementById('adults').value) || 0; 
+            const children = parseInt(document.getElementById('children').value) || 0; 
+            const total = adults + children; 
+            const otherNamesSection = document.getElementById('otherNamesSection'); 
+             
+            if (total > 1) { 
+                otherNamesSection.classList.remove('hidden'); 
+            } else { 
+                otherNamesSection.classList.add('hidden'); 
+            } 
+        } 
+ 
+        // Overnight stay change handler 
+        document.querySelectorAll('input[name="overnight"]').forEach(radio => { 
+            radio.addEventListener('change', updateBreakfastVisibility); 
+        }); 
+ 
+        function updateBreakfastVisibility() { 
+            const overnightValue = document.querySelector('input[name="overnight"]:checked')?.value; 
+            const breakfastFoodSection = document.getElementById('breakfastFoodSection'); 
+             
+            if (overnightValue && overnightValue !== 'no') { 
+                breakfastFoodSection.classList.remove('hidden'); 
+            } else { 
+                breakfastFoodSection.classList.add('hidden'); 
+            } 
+        } 
+ 
+        // Food contribution functions 
+        function addReceptionFood() { 
+            const container = document.getElementById('receptionFoodContributions'); 
+            const foodItem = document.createElement('div'); 
+            foodItem.className = 'food-item'; 
+            foodItem.innerHTML = ` 
+                <div class="form-group"> 
+                    <label>Food Type</label> 
+                    <select name="receptionFoodType[]"> 
+                        <option value="">Select type...</option> 
+                        <option value="Appetizer">Appetizer</option> 
+                        <option value="Side">Side</option> 
+                        <option value="Dessert">Dessert</option> 
+                        <option value="Beverage">Beverage</option> 
+                    </select> 
+                </div> 
+                <div class="form-group"> 
+                    <label>Food Description</label> 
+                    <input type="text" name="receptionFoodDescription[]" placeholder="What delicious item will you bring?"> 
+                </div> 
+                <button type="button" class="remove-food-btn" onclick="removeFood(this)">Remove Item</button> 
+            `; 
+            container.appendChild(foodItem); 
+        } 
+ 
+        function addBreakfastFood() { 
+            const container = document.getElementById('breakfastFoodContributions'); 
+            const foodItem = document.createElement('div'); 
+            foodItem.className = 'food-item'; 
+            foodItem.innerHTML = ` 
+                <div class="form-group"> 
+                    <label>Food Type</label> 
+                    <select name="breakfastFoodType[]"> 
+                        <option value="">Select type...</option> 
+                        <option value="Main Breakfast Item">Main Breakfast Item</option> 
+                        <option value="Side">Side</option> 
+                        <option value="Beverage">Beverage</option> 
+                        <option value="Sweet Treat">Sweet Treat</option> 
+                    </select> 
+                </div> 
+                <div class="form-group"> 
+                    <label>Food Description</label> 
+                    <input type="text" name="breakfastFoodDescription[]" placeholder="What breakfast delight will you bring?"> 
+                </div> 
+                <button type="button" class="remove-food-btn" onclick="removeFood(this)">Remove Item</button> 
+            `; 
+            container.appendChild(foodItem); 
+        } 
+ 
+        function removeFood(button) { 
+            button.parentElement.remove(); 
+        } 
+ 
+        // Form submission 
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) { 
+            e.preventDefault(); 
+             
+            const submitBtn = document.getElementById('submitBtn'); 
+            const originalText = submitBtn.textContent; 
+            submitBtn.textContent = 'Submitting...'; 
+            submitBtn.disabled = true; 
+ 
+            try { 
+                const formData = new FormData(this); 
+                const data = Object.fromEntries(formData.entries()); 
+                 
+                // Handle multiple food items 
+                const receptionFoodTypes = formData.getAll('receptionFoodType[]'); 
+                const receptionFoodDescriptions = formData.getAll('receptionFoodDescription[]'); 
+                const breakfastFoodTypes = formData.getAll('breakfastFoodType[]'); 
+                const breakfastFoodDescriptions = formData.getAll('breakfastFoodDescription[]'); 
+                 
+                data.receptionFood = receptionFoodTypes.map((type, index) => ({ 
+                    type: type, 
+                    description: receptionFoodDescriptions[index] 
+                })).filter(item => item.type && item.description); 
+                 
+                data.breakfastFood = breakfastFoodTypes.map((type, index) => ({ 
+                    type: type, 
+                    description: breakfastFoodDescriptions[index] 
+                })).filter(item => item.type && item.description); 
+ 
+                const response = await fetch(GOOGLE_SCRIPT_URL, { 
+                    method: 'POST', 
+                    body: JSON.stringify(data), 
+                    headers: { 
+                        'Content-Type': 'application/json' 
+                    } 
+                }); 
+ 
+                const result = await response.json(); 
+                 
+                if (result.success) { 
+                    showMessage('success', result.isUpdate ?  
+                        '✅ RSVP updated successfully! Thank you for keeping us informed.' :  
+                        '✅ RSVP submitted successfully! Thank you for celebrating with us.'); 
+                     
+                    // Reset form after successful submission 
+                    setTimeout(() => { 
+                        window.location.href = 'index.html'; 
+                    }, 2000); 
+                } else { 
+                    showMessage('error', '❌ Error submitting RSVP: ' + (result.error || 'Please try again.')); 
+                } 
+            } catch (error) { 
+                console.error('Error:', error); 
+                showMessage('error', '❌ Error submitting RSVP. Please check your connection and try again.'); 
+            } finally { 
+                submitBtn.textContent = originalText; 
+                submitBtn.disabled = false; 
+            } 
+        }); 
+ 
+        function showMessage(type, text) { 
+            // Remove existing messages 
+            const existingMessages = document.querySelectorAll('.message'); 
+            existingMessages.forEach(msg => msg.remove()); 
+             
+            // Create new message 
+            const message = document.createElement('div'); 
+            message.className = `message ${type}`; 
+            message.textContent = text; 
+             
+            // Insert at top of form container 
+            const formContainer = document.querySelector('.form-container'); 
+            formContainer.insertBefore(message, formContainer.firstChild); 
+             
+            // Scroll to message 
+            message.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+        } 
+    </script> 
+</body> 
+</html> 
